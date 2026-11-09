@@ -1,0 +1,46 @@
+-- Defines the MCM panel and reads its saved carry bonus for gacw_core.
+-- MCM owns persistence in axr_options.ltx.
+local section_id = "gacw"
+local option_id = "additional_carry_weight"
+local minimum = 0
+local maximum = 1000
+local default = 0
+
+-- Returns the top-level MCM panel and its 0–1000 kg slider. The sh flag makes
+-- this panel selectable without an intermediate category.
+function on_mcm_load()
+    return {
+        id = section_id,
+        sh = true,
+        gr = {
+            { id = "title", type = "title", text = "ui_mcm_menu_gacw" },
+            {
+                id = option_id,
+                type = "track",
+                val = 2,
+                min = minimum,
+                max = maximum,
+                step = 10,
+                prec = 0,
+                def = default
+            }
+        }
+    }
+end
+
+-- Returns the saved bonus as whole kilograms, clamped to the slider's bounds.
+-- A missing MCM, failed read or invalid number falls back to the 0 kg default.
+function get_bonus()
+    local mcm = ui_mcm
+    if not mcm or type(mcm.get) ~= "function" then
+        return default
+    end
+
+    local ok, value = pcall(mcm.get, section_id .. "/" .. option_id)
+    local bonus = ok and tonumber(value)
+    if not bonus or bonus ~= bonus or math.abs(bonus) == math.huge then
+        return default
+    end
+
+    return math.floor(math.max(minimum, math.min(maximum, bonus)) + 0.5)
+end

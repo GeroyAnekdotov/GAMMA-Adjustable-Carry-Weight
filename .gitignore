@@ -1,0 +1,17 @@
+/dist/
+/.venv/
+/venv/
+/.idea/
+/.vscode/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+*.log
+*.sav
+*.scop
+*.mdmp
+axr_options.ltx
+user.ltx
+ModOrganizer.ini

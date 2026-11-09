@@ -1,0 +1,11 @@
+<string_table>
+    <string id="ui_mcm_menu_gacw">
+        <text>GAMMA 0.9.5 Adjustable Carry Weight</text>
+    </string>
+    <string id="ui_mcm_gacw_additional_carry_weight">
+        <text>Additional Carry Weight (kg)</text>
+    </string>
+    <string id="ui_mcm_gacw_additional_carry_weight_desc">
+        <text>Adds this many kilograms to your carry limit. GAMMA recalculates the movement limit. Set to 0 for standard carry weight.</text>
+    </string>
+</string_table>

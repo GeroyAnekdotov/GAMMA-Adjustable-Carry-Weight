@@ -1,0 +1,11 @@
+<string_table>
+    <string id="ui_mcm_menu_gacw">
+        <text>GAMMA 0.9.5 — Настройка переносимого веса</text>
+    </string>
+    <string id="ui_mcm_gacw_additional_carry_weight">
+        <text>Дополнительный переносимый вес (кг)</text>
+    </string>
+    <string id="ui_mcm_gacw_additional_carry_weight_desc">
+        <text>Увеличивает предел переносимого веса на указанное число килограммов. GAMMA пересчитывает порог перегруза. Значение 0 сохраняет стандартный предел.</text>
+    </string>
+</string_table>

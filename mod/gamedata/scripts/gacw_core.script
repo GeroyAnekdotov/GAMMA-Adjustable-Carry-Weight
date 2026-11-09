@@ -1,0 +1,50 @@
+-- Registers the player's MCM carry bonus with GAMMA's shared weight registry.
+-- The registry combines it with Strength and other modifiers and writes both engine limits.
+local modifier_key = "gacw_additional_carry_weight"
+local has_bonus = false
+
+-- Applies the current MCM value when an actor and the registry are available.
+-- The registry adds this many kg after the difficulty and Strength multipliers,
+-- then recalculates the movement limit with GAMMA's normal overload margin.
+-- Forced replacement under one key prevents accumulation. Zero removes only that key.
+local function apply_bonus()
+    if not (db and db.actor) then
+        return
+    end
+
+    local bonus = gacw_mcm.get_bonus()
+    if bonus == 0 and not has_bonus then
+        return
+    end
+
+    local registry = weight
+    if not registry or type(registry.add_weight) ~= "function"
+        or type(registry.remove_weight) ~= "function" then
+        return
+    end
+
+    if bonus > 0 then
+        has_bonus = registry.add_weight(modifier_key, bonus, true)
+    else
+        registry.remove_weight(modifier_key)
+        has_bonus = false
+    end
+end
+
+-- Removes this one-shot callback and applies the saved bonus after actor initialization.
+local function apply_after_first_update()
+    UnregisterScriptCallback("actor_on_update", apply_after_first_update)
+    apply_bonus()
+end
+
+-- Schedules application on the regular actor update so the difficulty baseline is ready
+-- regardless of the order of the first-update callbacks.
+local function actor_on_first_update()
+    RegisterScriptCallback("actor_on_update", apply_after_first_update)
+end
+
+-- Registers the load and options-change handlers. MCM sends the latter after saving Apply.
+function on_game_start()
+    RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+    RegisterScriptCallback("on_option_change", apply_bonus)
+end
