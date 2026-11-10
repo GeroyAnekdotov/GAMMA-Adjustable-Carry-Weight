@@ -38,4 +38,12 @@ That was the initial development time. Testing, documentation and release prepar
 
 ## Source and testing
 
-The project uses the [MIT License](LICENSE). See the [research notes](docs/RESEARCH.md) and [test plan](docs/TESTING.md) for implementation details. Run `python build.py` with Python 3.10 or later to build the installation ZIP in `dist/`.
+Original contributions are available under the [MIT License](LICENSE). See the [research notes](docs/RESEARCH.md) and [test plan](docs/TESTING.md) for implementation details. Run `python build.py` with Python 3.10 or later to build the installation ZIP in `dist/`.
+
+## Bug reports and feature requests
+
+Found a bug or have an idea? Use [Bug Report](https://github.com/GeroyAnekdotov/GAMMA-Adjustable-Carry-Weight/issues/new?template=bug_report.yml) or [Feature Request](https://github.com/GeroyAnekdotov/GAMMA-Adjustable-Carry-Weight/issues/new?template=feature_request.yml). Include your GAMMA/mod versions and relevant logs when reporting a bug.
+
+## License
+
+Original contributions by GeroyAnekdotov are available under the [MIT License](LICENSE). See the project credits for third-party materials and licensing limits. The MIT grant does not override upstream authors' rights.
